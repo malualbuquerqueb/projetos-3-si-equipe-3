@@ -111,9 +111,6 @@ Nosso time é formado por seis integrantes. Abaixo, estão seus respectivos GitH
 <details>
 <summary> IngressArt - Como rodar?</summary>
 
-Este projeto é composto por dois módulos:
- Java + Spring Boot + PostgreSQL
-
 
 
 ###  Requisitos para rodar o projeto
