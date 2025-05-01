@@ -112,85 +112,71 @@ Nosso time é formado por seis integrantes. Abaixo, estão seus respectivos GitH
 <summary> IngressArt - Como rodar?</summary>
 
 Este projeto é composto por dois módulos:
-
-- **Backend**: Java + Spring Boot + PostgreSQL
-- **Frontend**: React (Vite) com consumo da API Java
+ Java + Spring Boot + PostgreSQL
 
 
 
 ###  Requisitos para rodar o projeto
-
-### Backend - Java
+Requisitos:
 - Java 17 ou superior
-- Maven
-- PostgreSQL
-- IDE sugerida: Eclipse
+- PostgreSQL instalado
+- IDE (Eclipse, VS Code etc.)
 
-### Frontend - React
-- Node.js (versão 18 ou superior)
-- npm
-
----
-
-
----
-
-### Configuração do Banco de Dados (PostgreSQL)
-
-1. Abra o **pgAdmin** ou seu terminal do PostgreSQL.
-2. Crie um banco de dados com o nome: java_backend
-3. Usuário: `postgres`  
-   Senha: `postgres` (ou a que você definiu na instalação)
-
----
-
-### Como rodar o Backend (Spring Boot)
-
-### 1. Abrir o projeto no Eclipse
-
-- Importe a pasta `java-backend` como projeto Maven.
-
-### 2. Configurar o `application.properties`
-
-Verifique se o arquivo `src/main/resources/application.properties` está assim:
-
-```properties
-spring.datasource.url=jdbc:postgresql://localhost:5432/java_backend
-spring.datasource.username=postgres
-spring.datasource.password=postgres
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
-spring.jpa.properties.hibernate.format_sql=true
-spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
-````
-
+Passos:
+- Clone ou baixe este repositório
+- No PostgreSQL, crie o banco:
+  - CREATE DATABASE ingressart;
+  - Execute os scripts SQL da pasta database/ para criar as tabelas
+  - Configure a conexão com o banco no arquivo ConnectionFactory.java:
+  - private static final String USER = "seu_usuario";
+  - private static final String PASS = "sua_senha";
+ 
+    
 ### Rodar o projeto
-- Clique com o botão direito no projeto > Run As > Spring Boot App
+- Compile e clique com o botão direito na App.java > Run As Java 
+- O sistema será iniciado via terminal com menus de interação
 
-###  Como rodar o Frontend (React + Vite)
-
-1. Abrir o terminal
-Abra um terminal na pasta teatro-frontend.
-
-2. Instalar dependências
-bash
-npm install
-
-3. Rodar o frontend
-bash
-npm run dev
-
-Abra o navegador em:
-http://localhost:5173
+---
 
 
 ### Fluxo de Funcionamento
-- A tela inicial exibe o formulário para cadastrar uma peça de teatro.
+Acesso Inicial
+Ao iniciar o sistema, o usuário escolhe:
+- Acessar como Teatro (Administrador)
+- Acessar como Cliente
+- Acessar sem cadastro
+- Sair
 
-- O formulário envia os dados para o backend em http://localhost:8080/pecas.
+Teatro (Administrador)
+- Menu disponível:
+- Cadastrar Peça
+  - Listar Peças
+  - Editar Peça
+  - Deletar Peça
+  - Sair
+- Cadastrar Sala
+- Listar Salas
+- Cadastrar Sessão
+- Sair
 
-- A opção "Visualizar Peças" na navbar lista todas as peças cadastradas consumindo a mesma API.
+Detalhes:
+- Cada peça está vinculada a uma sala e possui sessões.
+- A capacidade da sessão segue a capacidade da sala.
+- A edição e exclusão de peças afetam também suas sessões.
 
+Cliente
+Acesso pode ser com ou sem login.
+- Sem login:
+- Visualiza peças cadastradas
+- Vê detalhes da peça
+- Se quiser comprar ingresso, precisa se cadastrar
+
+- Com login:
+- Visualiza peças
+- Compra ingresso via simulação PIX
+- Recebe comprovante com código
+
+Pode acessar a opção Meus Eventos (em construção)
 </details>
 
 ---
